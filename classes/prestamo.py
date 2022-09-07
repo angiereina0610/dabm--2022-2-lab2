@@ -52,9 +52,13 @@ def verPrestamos():
     matriz2 = []
     
     for l in range(0 , len(matriz)):
-        if matriz[l][1] == carnet_Est:
+        if matriz[l][1]==carnet_Est:
             matriz2.append(matriz[l])
-    print(tabulate(matriz2,header,tablefmt="grid"))
+            print(tabulate(matriz2,header,tablefmt="grid"))
+    else:
+            print("El estudiante no tiene equipos en prestamos en este momento")
+
+    
 
 def registroEntrega():
     datos=get_all_prestamos()
@@ -77,7 +81,6 @@ def save_all_prestamo(datos):
 def get_all_prestamos():
     a=open("database/prestamos.csv","r")
     datos=a.readlines()
-    return datos    
-    
+    return datos 
     
         

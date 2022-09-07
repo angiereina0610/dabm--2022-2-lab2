@@ -67,6 +67,7 @@ def consultarEquipo():
                 return cont
     
 def registroMantenimiento():
+    
     listaEquipos = getAllEquipos()
     #print(listaEquipos)
     equipo = input("Equipo:")

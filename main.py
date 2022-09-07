@@ -26,6 +26,8 @@ def main():
             registroMantenimiento()
         elif op2 =="4":
             registroEntrega()
+        elif op2 =="5":
+            ver_todos_los_prestamos()
         else:
             print("Opción inválida")
             main()
@@ -35,15 +37,21 @@ def main():
         op2=menu2.ver()
         if op2=="1":
             verPrestamos()
+            
         elif op2=="2":
             consultarEquipo()
-            
+
+           
     elif op=="3":
         exit()
         
     main()
+ 
+    
     
 if __name__=='__main__':
     main()
+    
+    
     
     #ultima fecha de mantenimiento + ciclo = cuando hay que hacer el mantenimiento 

@@ -33,22 +33,38 @@ class Equipo:
         pass
 
 
+
 def CrearEquipo():
     print("REGISTRAR NUEVO EQUIPO")
-    nombre = input("Nombre:")
+    nombre_equipo = input("Nombre de equipo:")
     proveedor = input("Proveedor:")
     referencia = input("Referencia:")
     ciclo = input("Ciclo de mantenimiento (dias):")
     cantidad = input("Cantidad:")
-    fum=input("Fecha última de mantenimiento(yyyy-mm-dd):")
+    fum=input("Fecha  de último mantenimiento(yyyy-mm-dd):")
 
-    e = Equipo(nombre, proveedor, referencia, ciclo,cantidad , fum)
+    e = Equipo(nombre_equipo, proveedor, referencia, ciclo,cantidad , fum)
     
     return e
 
 def consultarEquipo():
-    print("CONSULTA DE EQUIPOS")
-    nombre = input("Nombre de equipo:")
+    print("CONSULTA DE EQUIPOS".center(50,"*"))
+    nom_equip = input("Ingrese por favor el nombre del equipo:")
+    datos1 = get_all_equipos()
+    cont=0
+    
+    datos2=",".join(datos1)
+    
+    if nom_equip in datos2:
+        for l in datos1:
+            if nom_equip in l:
+                datos1 =l.split(";")
+                cont = int(datos1[4])
+                if cont > 0:
+                    print("El equipo existe en la base de datos y hay " + str (cont) + "  equipos")
+                else:
+                    print("El equipo no esta en la base de datos")
+                return cont
     
 def registroMantenimiento():
     listaEquipos = getAllEquipos()
@@ -82,4 +98,20 @@ def getAllEquipos():
 
 def registroEntrega():
     pass
+def ver_todos_los_prestamos():
+    a = open("database/prestamos.csv","r") 
+    prestamos = a.readlines()
+    header = ["NOMBRE","CARNET","EQUIPO","FECHA DE PRESTAMO","FECHA DE ENTREGA"]
+    
+    matriz = []
 
+    for l in prestamos:
+        l = l.replace("\n" , "")
+        l = l.split(';')
+        matriz.append(l)
+        
+    print(tabulate(matriz,header,tablefmt="grid"))
+def get_all_equipos():
+    a=open("database/equipos.csv","r")
+    datos=a.readlines()
+    return datos
